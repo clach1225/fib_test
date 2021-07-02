@@ -1,5 +1,5 @@
 FROM node:alpine
-USER root
+USER clach
 WORKDIR "/app"
 COPY ./package.json ./
 RUN npm install
