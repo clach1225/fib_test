@@ -1,7 +1,7 @@
 FROM node:alpine
 USER clach
 WORKDIR "/app"
-COPY ./package.json ./
+COPY --chown=clach:clach ./package.json ./
 RUN npm install
-COPY . .
+COPY --chown=clach:clach . .
 CMD ["npm", "run", "start"]
