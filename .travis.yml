@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t clach1551/fib-image -f ./client/Dockerfile.dev ./client
+  - docker build -t clach1551/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true clach1551/fib-image npm test
+  - docker run -e CI=true clach1551/react-test npm test
 
 after_success:
   - docker build -t clach1551/multi-client ./client
   - docker build -t clach1551/multi-nginx ./nginx
   - docker build -t clach1551/multi-server ./server
   - docker build -t clach1551/multi-worker ./worker
-# Log in to the docker CLI
+  # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# Take those images and push to dockerhub:
-- docker push clach1551/multi-client
-- docker push clach1551/multi-nginx
-- docker push clach1551/multi-server
-- docker push clach1551/multi-worker
+  # Take those images and push them to docker hub
+  - docker push clach1551/multi-client
+  - docker push clach1551/multi-nginx
+  - docker push clach1551/multi-server
+  - docker push clach1551/multi-worker
