@@ -1,9 +1,11 @@
 sudo: required
+language: generic
+
 services:
   - docker
 
-  before_install:
-    - docker build -t clach1551/fib-image -f ./client/Dockerfile.dev ./client
+before_install:
+  - docker build -t clach1551/fib-image -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true clach1551/fib-image npm test
