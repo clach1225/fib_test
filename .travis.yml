@@ -5,10 +5,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t clach1551/fib-image -f ./client/Dockerfile.dev ./client
+  - docker build -t clach1551/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true clach1551/fib-image npm test
+  - docker run -e CI=true clach1551/react-test npm test
 
 after_success:
   - docker build -t clach1551/multi-client ./client
